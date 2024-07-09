@@ -1,0 +1,49 @@
+<!-- inherits the structure of the "base.html" file -->
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="text-center">
+    <h2>New Task</h2>
+
+    <!-- displays the form for creating a new task -->
+    <form method="post" name="task">
+      {{ form.hidden_tag() }}
+
+      <p>
+        <label>Title</label>
+        {{ form.title }}<br>
+        {% for error in form.title.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </p>
+
+      <p>
+        <label>Date</label>
+        {{ form.date }}
+
+        {% for error in form.date.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}<br>
+      </p>
+
+      <label>Description</label>
+      <p>{{ form.description }}</p>
+      {% for error in form.description.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}<br>
+
+      <!-- displays error messages relating to the form -->
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul id="messages">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+
+      <p><input type="submit" value="Create Task" class="button"></p>
+    </form>
+  </div>
+{% endblock %}

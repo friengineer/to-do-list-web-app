@@ -1,0 +1,61 @@
+<!-- inherits the structure of the "base.html" file -->
+{% extends "base.html" %}
+{% block content %}
+
+  <h2>{{ header }}</h2>
+
+  <!-- creates the components for each task in the database -->
+  {% for i in tasks %}
+    <div class="outer">
+      <div class="task container-fluid">
+        <p>
+          <strong>Task number:</strong> {{ i.id }}<br>
+          <strong>Title:</strong> {{ i.title }}<br>
+          <strong>Date:</strong> {{ i.date }}<br>
+          <strong>Description:</strong> {{ i.description }}<br>
+        </p>
+      </div>
+
+      <div class="complete contianer-fluid">
+        <p><strong>Finished?</strong></p>
+        {% if i.complete == 1 %}
+          <p>&#x2714</p>
+        {% else %}
+          <p>&#x2718</p>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+
+  <!-- contains the form for marking a task as finished -->
+  <div class="text-center" id="markComplete">
+    <h3>Mark A Task As Finished</h3>
+
+    <p>Enter the number of the task you would like to mark as finished below.</p>
+
+    <form method="post" name="task">
+      {{ form.hidden_tag() }}
+
+      <p>
+        <label>Task Number</label>
+        {{ form.number }}<br>
+        {% for error in form.number.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+
+        <!-- displays error messages relating to the form -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul id="messages">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <p><input type="submit" value="Finish Task" class="button"></p>
+      </p>
+    </form>
+  </div>
+{% endblock %}

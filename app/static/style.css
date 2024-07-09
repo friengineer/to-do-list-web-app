@@ -1,0 +1,55 @@
+body {
+  background-color: lightblue;
+}
+
+h1 {
+  padding-top: 2%;
+  font-size: 250%;
+}
+
+/* following two blocks of code style the navigation bar */
+nav {
+  display: inline-block;
+  text-align: center;
+}
+
+.navbar {
+  border: none;
+  background-color: lightblue;
+}
+
+/* following block of code styles how the main content box appears */
+article {
+  background-color: orange;
+  margin-bottom: 2%;
+}
+
+h2 {
+  text-align: center;
+  margin: 2%;
+}
+
+/* following block of code styles how error messages are displayed from the forms */
+ul#messages {
+  list-style-type: none;
+}
+
+/* following four blocks of code style the display of the tasks and the form for marking */
+/* a task as finished */
+.task {
+  float: left;
+  margin-bottom: 5%
+}
+
+.complete {
+  float: right;
+}
+
+.outer {
+  clear: both;
+}
+
+div#markComplete {
+  clear: both;
+  margin-top: 18%;
+}
